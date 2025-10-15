@@ -15,7 +15,7 @@
 
 ## 🚀 Live Demo
 
-[View Live Demo](#) *(Add your deployed link here later)*
+[View Live Demo](https://mjay-code-oss.github.io/breakfast-wheel/) 
 
 ## 🛠️ Technologies Used
 
