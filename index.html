@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Breakfast Wheel</title>
+        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+
+        <header class="site-header">
+            <img class="logo" src="assets/images/breakfast wheel-logo-transparent.png" alt="Breakfast Wheel logo">
+            <div class="mood-wrap">
+                <label for="mood" class="sr-only">Select mood</label>
+                <select id="mood" name="mood">
+                    <option value="any">Any mood</option>
+                    <option value="relaxed">Relaxed</option>
+                    <option value="rushed">Rushed</option>
+                    <option value="comfort">Comfort</option>
+                    <option value="healthy">Healthy</option>
+                </select>
+            </div>
+        </header>
+
+        <main class="app">
+            <section class="hero">
+                <h1 class="hero-title">Good morning — let the day decide</h1>
+                <p class="hero-lead">Tap <strong>Spin</strong> and watch the cards shuffle. Your breakfast, chosen with a pinch of serendipity.</p>
+            </section>
+
+            <section class="wheel">
+                <div class="card-track" id="cardTrack" aria-live="polite">
+                    
+                    <article class="card" data-mood="comfort">
+                        <img src="assets/images/pancakes.webp" alt="Fluffy pancakes with maple syrup">
+                        <div class="card-body">
+                            <h3>Pancakes & Syrup</h3>
+                            <p class="meta">Comfort • 520 kcal</p>
+                        </div>
+                    </article>
+
+                    <article class="card" data-mood="healthy">
+                        <img src="assets/images/avocado and bread with eggs.webp" alt="Avocado toast with poached eggs">
+                        <div class="card-body">
+                            <h3>Avocado Toast</h3>
+                            <p class="meta">Healthy • 340 kcal</p>
+                        </div>
+                    </article>
+
+                    <article class="card" data-mood="comfort">
+                        <img src="assets/images/fried eggs and plantain.webp" alt="Fried eggs with sweet plantain">
+                        <div class="card-body">
+                            <h3>Eggs & Plantain</h3>
+                            <p class="meta">Comfort • 410 kcal</p>
+                        </div>
+                    </article>
+
+                    <article class="card" data-mood="relaxed">
+                        <img src="assets/images/croissant-webp.webp" alt="Buttery French croissant">
+                        <div class="card-body">
+                            <h3>Croissant</h3>
+                            <p class="meta">Relaxed • 340 kcal</p>
+                        </div>
+                    </article>
+
+                    <article class="card" data-mood="comfort">
+                        <img src="assets/images/beans and plantain.webp" alt="Beans and fried plantain">
+                        <div class="card-body">
+                            <h3>Beans & Plantain</h3>
+                            <p class="meta">Hearty • 540 kcal</p>
+                        </div>
+                    </article>
+
+                    <article class="card" data-mood="healthy">
+                        <img src="assets/images/yam with egg sauce.webp" alt="Yam with egg sauce">
+                        <div class="card-body">
+                            <h3>Yam & Egg Sauce</h3>
+                            <p class="meta">Protein-rich • 400 kcal</p>
+                        </div>
+                    </article>
+
+                    <article class="card" data-mood="rushed">
+                        <img src="assets/images/avocado and bread with eggs.webp" alt="Quick breakfast toast">
+                        <div class="card-body">
+                            <h3>Quick Toast</h3>
+                            <p class="meta">Fast • 280 kcal</p>
+                        </div>
+                    </article>
+
+                    <article class="card" data-mood="healthy">
+                        <img src="assets/images/pancakes.webp" alt="Protein pancakes">
+                        <div class="card-body">
+                            <h3>Protein Pancakes</h3>
+                            <p class="meta">Energizing • 380 kcal</p>
+                        </div>
+                    </article>
+
+                </div>
+
+                <div class="controls">
+                    <button id="spinBtn" class="btn primary" aria-label="Spin the breakfast wheel">
+                        <span class="btn-text">Spin</span>
+                    </button>
+                    <button id="saveBtn" class="btn outline" aria-label="Save your favorite breakfast">
+                        <span class="btn-text">Save</span>
+                    </button>
+                </div>
+            </section>
+
+            <section class="result" id="result" hidden>
+                <div class="result-card">
+                    <img id="resultImg" src="" alt="">
+                    <div class="result-body">
+                        <h2 id="resultTitle"></h2>
+                        <p id="resultMeta"></p>
+                        <blockquote id="resultQuote"></blockquote>
+                        <div class="result-actions">
+                            <button id="againBtn" class="btn primary">
+                                <span class="btn-text">Spin Again</span>
+                            </button>
+                            <button id="shareBtn" class="btn outline">
+                                <span class="btn-text">Share</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="site-footer">
+            <p>© <span id="year"></span> Breakfast Wheel — made with good mornings.</p>
+        </footer>
+
+        <script src="script.js"></script>
+    </body>
+</html>

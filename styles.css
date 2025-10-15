@@ -1,0 +1,1169 @@
+/* ============================================
+   BREAKFAST WHEEL CSS
+   Mobile-First Responsive Design
+   ============================================ */
+
+/* ============================================
+   1. CSS CUSTOM PROPERTIES (Variables)
+   ============================================ */
+
+:root {
+  /* === COLOR PALETTE === */
+  /* These colors are designed to make you HUNGRY! */
+  
+  /* Backgrounds */
+  --bg-cream: #FFF8F0;           /* Warm cream - like fresh milk */
+  --bg-light: #FFFAF5;           /* Almost white, soft warmth */
+  --card-bg: #FFFFFF;            /* Pure white for cards */
+  
+  /* Text Colors */
+  --text-dark: #2D1B0E;          /* Rich coffee brown */
+  --text-medium: #6B5445;        /* Medium brown */
+  --text-light: #9B8578;         /* Light brown for subtle text */
+  
+  /* Accent Colors - APPETITE BOOSTING! */
+  --orange-warm: #FF6B35;        /* Tangerine orange - energetic! */
+  --orange-deep: #E8500C;        /* Deep orange - hunger trigger */
+  --yellow-butter: #FFD23F;      /* Butter yellow - breakfast vibes */
+  --red-berry: #C1292E;          /* Berry red - sweet & tart */
+  --purple-plum: #6B4C9A;        /* Plum purple - sophisticated */
+  --green-fresh: #4A7C59;        /* Fresh herb green */
+  
+  /* Shadows & Effects */
+  --shadow-sm: 0 2px 8px rgba(45, 27, 14, 0.08);
+  --shadow-md: 0 4px 16px rgba(45, 27, 14, 0.12);
+  --shadow-lg: 0 8px 24px rgba(45, 27, 14, 0.16);
+  --shadow-xl: 0 12px 32px rgba(45, 27, 14, 0.2);
+  
+  /* Spacing System - Consistent spacing throughout */
+  --space-xs: 0.5rem;    /* 8px */
+  --space-sm: 1rem;      /* 16px */
+  --space-md: 1.5rem;    /* 24px */
+  --space-lg: 2rem;      /* 32px */
+  --space-xl: 3rem;      /* 48px */
+  
+  /* Border Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 999px;  /* For pill-shaped buttons */
+  
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+}
+
+
+/* Universal Reset - Makes all browsers behave the same */
+*, 
+*::before, 
+*::after {
+  box-sizing: border-box;  /* Padding/border included in width/height */
+  margin: 0;               /* Remove default margins */
+  padding: 0;              /* Remove default padding */
+}
+
+/* HTML & Body Foundation */
+html {
+  font-size: 16px;         /* Base font size (1rem = 16px) */
+  scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  /* Font & Text */
+  font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-dark);
+  
+  /* Layout */
+  min-height: 100vh;           /* At least full viewport height */
+  display: flex;
+  flex-direction: column;      /* Stack header, main, footer vertically */
+  align-items: center;         /* Center horizontally */
+  
+  /* Background */
+  background-color: var(--bg-cream);
+  
+  /* Spacing */
+  padding: var(--space-sm);    /* 16px padding on mobile */
+  
+  /* Prevent horizontal scroll */
+  overflow-x: hidden;
+  
+  /* Position for pseudo-elements */
+  position: relative;
+}
+
+/* Background Pattern Layer (decorative) */
+body::before {
+  content: "";
+  position: fixed;             /* Stays in place when scrolling */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("assets/images/background-pattern-svg.svg");
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: cover;
+  opacity: 0.08;               /* Very subtle */
+  z-index: -2;                 /* Behind everything */
+  pointer-events: none;        /* Can't interact with it */
+}
+
+/* Warm Color Overlay (makes pattern feel breakfast-y) */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 107, 53, 0.03) 0%,    /* Subtle orange */
+    rgba(255, 210, 63, 0.04) 50%,   /* Subtle yellow */
+    rgba(193, 41, 46, 0.02) 100%    /* Subtle red */
+  );
+  z-index: -1;                 /* Behind content, but in front of pattern */
+  pointer-events: none;
+}
+
+/* Main Content Container */
+.app {
+  width: 100%;
+  max-width: 100%;             /* Full width on mobile */
+  flex: 1;                     /* Grow to push footer down */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-lg);        /* 32px between sections */
+}
+
+/* Screen Reader Only Class (accessibility) */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* Image Defaults */
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Button Reset */
+button {
+  font-family: inherit;        /* Use Poppins */
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* === TABLET BREAKPOINT === */
+@media (min-width: 768px) {
+  body {
+    padding: var(--space-md) var(--space-lg);  /* More padding on tablet */
+  }
+  
+  .app {
+    max-width: 720px;          /* Constrain width on tablet */
+    gap: var(--space-xl);      /* More space between sections */
+  }
+}
+
+/* === DESKTOP BREAKPOINT === */
+@media (min-width: 1024px) {
+  body {
+    padding: var(--space-lg) var(--space-xl);  /* Even more padding */
+  }
+  
+  .app {
+    max-width: 900px;          /* Wider on desktop */
+  }
+}
+
+/* Main Header Container */
+.site-header {
+  /* Layout */
+  width: 100%;
+  max-width: 100%;                    /* Full width on mobile */
+  display: flex;
+  justify-content: space-between;     /* Logo left, dropdown right */
+  align-items: center;                /* Vertically centered */
+  gap: var(--space-sm);               /* 16px gap between items */
+  
+  /* Spacing */
+  padding: var(--space-sm) var(--space-xs);  /* 16px top/bottom, 8px sides */
+  margin: 0 auto var(--space-md) auto;       /* Center, 24px bottom margin */
+  
+  /* Sticky Positioning */
+  position: sticky;
+  top: 0;
+  z-index: 100;                       /* Above everything else */
+  
+  /* Background (semi-transparent with blur) */
+  background: rgba(255, 248, 240, 0.85);     /* 85% opaque cream */
+  backdrop-filter: blur(12px);               /* Blur content behind it */
+  -webkit-backdrop-filter: blur(12px);       /* Safari support */
+  
+  /* Border & Shadow */
+  border-bottom: 1px solid rgba(45, 27, 14, 0.06);
+  box-shadow: 0 2px 12px rgba(45, 27, 14, 0.04);
+  
+  /* Animation */
+  transition: all var(--transition-normal);
+}
+
+/* Logo Image */
+.site-header .logo {
+  height: 48px;                       /* Fixed height on mobile */
+  width: auto;                        /* Width adjusts automatically */
+  display: block;
+  
+  /* Subtle hover effect */
+  transition: transform var(--transition-fast);
+}
+
+.site-header .logo:hover {
+  transform: scale(1.05);             /* Slightly bigger on hover */
+}
+
+/* Mood Selector Wrapper */
+.mood-wrap {
+  display: inline-flex;
+  align-items: center;
+  position: relative;                 /* For positioning the arrow */
+}
+
+/* The Dropdown Select Element */
+.mood-wrap select {
+  /* Appearance */
+  appearance: none;                   /* Remove default browser styling */
+  -webkit-appearance: none;           /* Safari */
+  -moz-appearance: none;              /* Firefox */
+  
+  /* Layout */
+  display: inline-flex;
+  align-items: center;
+  min-width: 110px;                   /* Minimum width */
+  
+  /* Spacing */
+  padding: var(--space-xs) var(--space-sm);  /* 8px top/bottom, 16px sides */
+  padding-right: 2.5rem;              /* Extra space for arrow icon */
+  
+  /* Typography */
+  font-size: 0.875rem;                /* 14px */
+  font-weight: 500;
+  color: var(--text-dark);
+  
+  /* Border & Background */
+  border: 1.5px solid rgba(45, 27, 14, 0.12);
+  border-radius: var(--radius-full);  /* Pill shape */
+  background: var(--card-bg);
+  
+  /* Shadow */
+  box-shadow: var(--shadow-sm);
+  
+  /* Cursor & Transition */
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+/* Dropdown Hover Effect */
+.mood-wrap select:hover {
+  border-color: var(--orange-warm);   /* Orange border on hover */
+  box-shadow: 0 4px 12px rgba(255, 107, 53, 0.15);  /* Orange glow */
+  transform: translateY(-1px);        /* Lift slightly */
+}
+
+/* Dropdown Focus Effect (when clicked) */
+.mood-wrap select:focus {
+  outline: none;                      /* Remove default outline */
+  border-color: var(--orange-warm);
+  box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);  /* Focus ring */
+}
+
+/* Custom Dropdown Arrow */
+.mood-wrap::after {
+  content: "▾";                       /* Down arrow character */
+  position: absolute;
+  right: var(--space-sm);             /* 16px from right */
+  top: 50%;
+  transform: translateY(-50%);        /* Center vertically */
+  
+  /* Styling */
+  color: var(--text-medium);
+  font-size: 0.875rem;
+  
+  /* Can't be clicked (clicks go through to select) */
+  pointer-events: none;
+  
+  /* Animation */
+  transition: color var(--transition-fast);
+}
+
+/* Arrow color changes on hover */
+.mood-wrap:hover::after {
+  color: var(--orange-warm);
+}
+
+/* === TABLET BREAKPOINT === */
+@media (min-width: 768px) {
+  .site-header {
+    max-width: 720px;                 /* Constrain width */
+    padding: var(--space-sm) var(--space-md);  /* More padding */
+    gap: var(--space-md);             /* 24px gap */
+    margin-bottom: var(--space-lg);   /* 32px bottom margin */
+  }
+  
+  .site-header .logo {
+    height: 56px;                     /* Bigger logo on tablet */
+  }
+  
+  .mood-wrap select {
+    min-width: 140px;                 /* Wider dropdown */
+    font-size: 0.9375rem;             /* 15px */
+    padding: 0.625rem var(--space-md); /* More padding */
+  }
+}
+
+/* === DESKTOP BREAKPOINT === */
+@media (min-width: 1024px) {
+  .site-header {
+    max-width: 900px;                 /* Even wider */
+    padding: var(--space-md) var(--space-lg);
+    gap: var(--space-lg);             /* 32px gap */
+  }
+  
+  .site-header .logo {
+    height: 64px;                     /* Even bigger logo */
+  }
+  
+  .mood-wrap select {
+    min-width: 160px;                 /* Widest dropdown */
+    font-size: 1rem;                  /* 16px - full size */
+    padding: 0.75rem var(--space-md);
+  }
+  
+  /* Add subtle animation on desktop */
+  .site-header .logo:hover {
+    transform: scale(1.08) rotate(2deg);  /* Slight tilt on hover */
+  }
+}
+
+/* Hero Container */
+.hero {
+  /* Layout */
+  width: 100%;
+  max-width: 100%;                    /* Full width on mobile */
+  text-align: center;                 /* Center all text */
+  
+  /* Spacing */
+  margin: 0 auto var(--space-lg) auto;  /* Center, 32px bottom */
+  padding: 0 var(--space-xs);         /* Small side padding */
+}
+
+/* Main Hero Title */
+.hero-title {
+  /* Font */
+  font-family: "Playfair Display", serif;  /* Elegant serif font */
+  font-size: 1.75rem;                 /* 28px on mobile */
+  font-weight: 700;
+  line-height: 1.2;                   /* Tight line spacing */
+  letter-spacing: -0.02em;            /* Slightly tighter letters */
+  
+  /* Color - Gradient Text! */
+  background: linear-gradient(
+    135deg,
+    var(--orange-warm) 0%,            /* Orange */
+    var(--red-berry) 50%,             /* Red */
+    var(--purple-plum) 100%           /* Purple */
+  );
+  background-clip: text;              /* Clip background to text shape */
+  -webkit-background-clip: text;      /* Safari support */
+  -webkit-text-fill-color: transparent;  /* Make text transparent to show gradient */
+  color: transparent;                 /* Fallback for older browsers */
+  
+  /* Spacing */
+  margin-bottom: var(--space-sm);     /* 16px below title */
+  
+  /* Animation on page load */
+  animation: fadeInUp 0.8s ease-out;
+}
+
+/* Subtitle/Lead Text */
+.hero-lead {
+  /* Font */
+  font-size: 0.9375rem;               /* 15px on mobile */
+  line-height: 1.6;
+  font-weight: 400;
+  color: var(--text-medium);
+  
+  /* Layout */
+  max-width: 480px;                   /* Constrain width for readability */
+  margin: 0 auto;                     /* Center it */
+  
+  /* Animation (slightly delayed) */
+  animation: fadeInUp 0.8s ease-out 0.2s both;  /* 0.2s delay */
+}
+
+/* Style the <strong> tag inside hero-lead */
+.hero-lead strong {
+  font-weight: 600;
+  color: var(--orange-warm);          /* Orange accent color */
+  position: relative;
+  
+  /* Subtle underline effect */
+  display: inline-block;
+}
+
+.hero-lead strong::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--yellow-butter),
+    transparent
+  );
+  opacity: 0.6;
+}
+
+/* Fade In Up Animation Keyframes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;                       /* Start invisible */
+    transform: translateY(20px);      /* Start 20px lower */
+  }
+  to {
+    opacity: 1;                       /* End fully visible */
+    transform: translateY(0);         /* End at normal position */
+  }
+}
+
+/* === TABLET BREAKPOINT === */
+@media (min-width: 768px) {
+  .hero {
+    max-width: 680px;                 /* Constrain width */
+    margin-bottom: var(--space-xl);   /* 48px bottom */
+    padding: 0 var(--space-md);       /* More padding */
+  }
+  
+  .hero-title {
+    font-size: 2.5rem;                /* 40px - much bigger! */
+    margin-bottom: var(--space-md);   /* 24px below */
+  }
+  
+  .hero-lead {
+    font-size: 1.0625rem;             /* 17px */
+    max-width: 540px;                 /* Wider */
+  }
+}
+
+/* === DESKTOP BREAKPOINT === */
+@media (min-width: 1024px) {
+  .hero {
+    max-width: 800px;
+    margin-bottom: var(--space-xl);
+    padding: var(--space-sm) var(--space-lg);
+  }
+  
+  .hero-title {
+    font-size: 3.25rem;               /* 52px - HUGE! */
+    margin-bottom: var(--space-md);
+  }
+  
+  .hero-lead {
+    font-size: 1.125rem;              /* 18px */
+    max-width: 600px;
+  }
+  
+  /* Add subtle hover effect on desktop */
+  .hero-title {
+    transition: transform var(--transition-normal);
+  }
+  
+  .hero:hover .hero-title {
+    transform: scale(1.02);           /* Slightly bigger on hover */
+  }
+}
+
+/* === LARGE DESKTOP (Optional) === */
+@media (min-width: 1440px) {
+  .hero-title {
+    font-size: 3.75rem;               /* 60px - MASSIVE! */
+  }
+  
+  .hero-lead {
+    font-size: 1.25rem;               /* 20px */
+    max-width: 680px;
+  }
+}
+
+
+/* Wheel Container (holds track + controls) */
+.wheel {
+  /* Layout */
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;       /* Stack track and buttons vertically */
+  align-items: center;
+  gap: var(--space-md);          /* 24px between track and buttons */
+  
+  /* Spacing */
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* Card Track (horizontal scrolling container) */
+.card-track {
+  /* Layout */
+  display: flex;
+  gap: var(--space-md);          /* 24px between cards */
+  width: 100%;
+  
+  /* Scrolling */
+  overflow-x: auto;              /* Allow horizontal scroll */
+  overflow-y: hidden;            /* No vertical scroll */
+  scroll-snap-type: x mandatory; /* Snap to cards when scrolling */
+  -webkit-overflow-scrolling: touch;  /* Smooth scrolling on iOS */
+  scroll-behavior: smooth;       /* Smooth scrolling animation */
+  
+  /* Spacing */
+  padding: var(--space-xs) var(--space-xs) var(--space-md) var(--space-xs);
+  /* Top, Right, Bottom, Left - extra bottom for shadow */
+  
+  /* Hide scrollbar but keep functionality */
+  scrollbar-width: none;         /* Firefox */
+  -ms-overflow-style: none;      /* IE/Edge */
+}
+
+/* Hide scrollbar in Chrome/Safari/Opera */
+.card-track::-webkit-scrollbar {
+  display: none;
+}
+
+/* Individual Card */
+.card {
+  /* Layout */
+  flex: 0 0 auto;                /* Don't grow/shrink, auto size */
+  width: min(85%, 320px);        /* 85% of screen OR 320px max */
+  scroll-snap-align: center;     /* Snap to center when scrolling */
+  
+  /* Appearance */
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);  /* 16px rounded corners */
+  overflow: hidden;              /* Crop content to rounded corners */
+  
+  /* Border */
+  border: 1px solid rgba(45, 27, 14, 0.08);
+  
+  /* Shadow - layered for depth! */
+  box-shadow: 
+    0 4px 6px rgba(45, 27, 14, 0.05),
+    0 10px 20px rgba(45, 27, 14, 0.08),
+    0 0 0 1px rgba(255, 255, 255, 0.5) inset;  /* Inner light edge */
+  
+  /* Transition for hover effects */
+  transition: all var(--transition-normal);
+  
+  /* Cursor */
+  cursor: pointer;
+  
+  /* Prevent selection while interacting */
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Card Hover Effect */
+.card:hover {
+  transform: translateY(-8px) scale(1.02);  /* Lift up & slightly bigger */
+  box-shadow: 
+    0 12px 24px rgba(255, 107, 53, 0.15),   /* Orange glow */
+    0 20px 40px rgba(45, 27, 14, 0.12),
+    0 0 0 1px var(--orange-warm) inset;     /* Orange inner glow */
+  border-color: rgba(255, 107, 53, 0.2);
+}
+
+/* Card Active/Press Effect */
+.card:active {
+  transform: translateY(-4px) scale(1);     /* Less lift, normal size */
+  transition: all var(--transition-fast);   /* Faster response */
+}
+
+/* Card Image */
+.card img {
+  /* Size */
+  width: 100%;
+  height: 200px;                 /* Fixed height on mobile */
+  
+  /* Image handling */
+  object-fit: cover;             /* Crop to fill space, no distortion */
+  object-position: center;       /* Center the image */
+  
+  /* Border */
+  border-bottom: 1px solid rgba(45, 27, 14, 0.06);
+  
+  /* Transition for hover effects */
+  transition: transform var(--transition-normal);
+}
+
+/* Image Hover Effect (zoom slightly) */
+.card:hover img {
+  transform: scale(1.08);        /* 8% bigger */
+}
+
+/* Card Body (text content area) */
+.card-body {
+  /* Spacing */
+  padding: 0.625rem 1rem;      /* 24px all around */
+  
+  /* Background gradient (subtle) */
+  background: linear-gradient(
+    to bottom,
+    var(--card-bg),
+    rgba(255, 255, 255, 0.7),
+    rgba(255, 248, 240, 0.4)
+  );
+}
+
+/* Card Title */
+.card-body h3 {
+  /* Font */
+  font-size: 1.125rem;           /* 18px */
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--text-dark);
+  
+  /* Spacing */
+  margin-bottom: 0.25rem;  /* 8px below */
+  
+  /* Prevent long names from breaking layout */
+  overflow: hidden;
+  text-overflow: ellipsis;       /* Add ... if text is too long */
+  white-space: nowrap;           /* Keep on one line */
+}
+
+/* Card Meta (category and calories) */
+.card-body .meta {
+  /* Font */
+  font-size: 0.875rem;           /* 14px */
+  font-weight: 400;
+  color: var(--text-light);
+  
+  /* Layout */
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);          /* Space between category and calories */
+}
+
+/* Add decorative bullet between meta items */
+.card-body .meta::before {
+  content: "•";
+  color: var(--yellow-butter);
+  font-size: 1rem;
+  line-height: 1;
+}
+
+/* Remove bullet from first meta item */
+.card-body .meta:first-of-type::before {
+  content: none;
+}
+
+/* === TABLET BREAKPOINT === */
+@media (min-width: 768px) {
+  .wheel {
+    max-width: 720px;
+    gap: var(--space-lg);        /* 32px gap */
+  }
+  
+  .card-track {
+    gap: var(--space-lg);        /* 32px between cards */
+    padding: var(--space-sm) var(--space-sm) var(--space-lg) var(--space-sm);
+  }
+  
+  .card {
+    width: 280px;                /* Fixed width - multiple cards visible */
+  }
+  
+  .card img {
+    height: 220px;               /* Taller images */
+  }
+  
+  .card-body h3 {
+    font-size: 1.1875rem;        /* 19px */
+  }
+  
+  .card-body .meta {
+    font-size: 0.9375rem;        /* 15px */
+  }
+}
+
+/* === DESKTOP BREAKPOINT === */
+@media (min-width: 1024px) {
+  .wheel {
+    max-width: 900px;
+  }
+  
+  .card-track {
+    gap: var(--space-xl);        /* 48px between cards - luxurious spacing */
+    padding: var(--space-md) var(--space-md) var(--space-xl) var(--space-md);
+  }
+  
+  .card {
+    width: 300px;                /* Wider cards */
+  }
+  
+  .card img {
+    height: 240px;               /* Even taller images */
+  }
+  
+  .card-body {
+    padding: 0.75rem 1.5rem;    /* More padding */
+  }
+  
+  .card-body h3 {
+    font-size: 1.25rem;          /* 20px */
+  }
+  
+  /* Enhanced hover effect on desktop */
+  .card:hover {
+    transform: translateY(-12px) scale(1.03);  /* More dramatic lift */
+  }
+  
+}
+
+
+/* Controls Container */
+.controls {
+  /* Layout */
+  display: flex;
+  gap: var(--space-md);              /* 24px between buttons */
+  width: 100%;
+  max-width: 100%;
+  
+  /* Spacing */
+  padding: 0 var(--space-xs);        /* Small side padding on mobile */
+  margin-top: var(--space-sm);
+}
+
+/* Base Button Styles */
+.btn {
+  /* Layout */
+  flex: 1 1 0;                       /* Equal width, grow and shrink */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  
+  /* Spacing */
+  padding: 1rem 1.5rem;              /* 16px top/bottom, 24px sides */
+  
+  /* Typography */
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;                   /* 16px */
+  font-weight: 600;
+  text-align: center;
+  
+  /* Appearance */
+  border-radius: var(--radius-full); /* Pill shape */
+  border: none;
+  cursor: pointer;
+  
+  /* Transitions */
+  transition: all var(--transition-normal);
+  
+  /* Prevent text selection */
+  user-select: none;
+  -webkit-user-select: none;
+  
+  /* Positioning for pseudo-elements */
+  position: relative;
+  overflow: hidden;
+}
+
+/* Primary Button (Spin button) */
+.btn.primary {
+  /* Background gradient */
+  background: linear-gradient(
+    135deg,
+    var(--orange-warm) 0%,
+    var(--orange-deep) 100%
+  );
+  color: white;
+  
+  /* Shadow */
+  box-shadow: 
+    0 4px 12px rgba(255, 107, 53, 0.3),
+    0 8px 24px rgba(255, 107, 53, 0.2);
+  
+  /* Text shadow for better readability */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Primary Button Hover */
+.btn.primary:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 
+    0 6px 16px rgba(255, 107, 53, 0.4),
+    0 12px 32px rgba(255, 107, 53, 0.25);
+  
+  /* Brighten on hover */
+  filter: brightness(1.1);
+}
+
+/* Primary Button Active (pressed) */
+.btn.primary:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: 
+    0 2px 8px rgba(255, 107, 53, 0.3);
+  transition: all var(--transition-fast);
+}
+
+/* Outline Button (Save button) */
+.btn.outline {
+  background: var(--card-bg);
+  color: var(--text-dark);
+  border: 2px solid rgba(45, 27, 14, 0.15);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Outline Button Hover */
+.btn.outline:hover {
+  transform: translateY(-2px);
+  border-color: var(--orange-warm);
+  color: var(--orange-warm);
+  background: rgba(255, 107, 53, 0.05);
+  box-shadow: 
+    0 4px 12px rgba(255, 107, 53, 0.15);
+}
+
+/* Outline Button Active */
+.btn.outline:active {
+  transform: translateY(0) scale(0.98);
+  transition: all var(--transition-fast);
+}
+
+/* Button Text Wrapper */
+.btn-text {
+  position: relative;
+  z-index: 1;
+}
+
+/* Ripple Effect on Click (optional enhancement) */
+.btn::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.btn:active::after {
+  width: 300px;
+  height: 300px;
+}
+
+/* === TABLET BREAKPOINT === */
+@media (min-width: 768px) {
+  .controls {
+    max-width: 520px;                /* Constrain width */
+    gap: var(--space-lg);            /* 32px gap */
+    padding: 0;                      /* Remove side padding */
+  }
+  
+  .btn {
+    padding: 1.125rem 2rem;          /* Bigger buttons */
+    font-size: 1.0625rem;            /* 17px */
+  }
+}
+
+/* === DESKTOP BREAKPOINT === */
+@media (min-width: 1024px) {
+  .controls {
+    max-width: 600px;
+  }
+  
+  .btn {
+    padding: 1.25rem 2.5rem;         /* Even bigger */
+    font-size: 1.125rem;             /* 18px */
+  }
+  
+  /* Add subtle pulse animation to primary button on desktop */
+  .btn.primary {
+    animation: subtlePulse 3s ease-in-out infinite;
+  }
+}
+
+/* Subtle pulse animation for primary button */
+@keyframes subtlePulse {
+  0%, 100% {
+    box-shadow: 
+      0 4px 12px rgba(255, 107, 53, 0.3),
+      0 8px 24px rgba(255, 107, 53, 0.2);
+  }
+  50% {
+    box-shadow: 
+      0 6px 16px rgba(255, 107, 53, 0.4),
+      0 12px 32px rgba(255, 107, 53, 0.3);
+  }
+}
+
+/* Result Container */
+.result {
+  /* Layout */
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  /* Spacing */
+  margin-top: var(--space-lg);
+  padding: 0 var(--space-xs);
+  
+  /* Animation */
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* Result Card */
+.result-card {
+  /* Layout */
+  display: flex;
+  flex-direction: column;            /* Stack on mobile */
+  gap: var(--space-md);
+  width: 100%;
+  max-width: 500px;
+  
+  /* Appearance */
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(45, 27, 14, 0.08);
+  
+  /* Shadow - extra special! */
+  box-shadow: 
+    0 8px 32px rgba(255, 107, 53, 0.15),
+    0 16px 48px rgba(45, 27, 14, 0.1),
+    0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+  
+  /* Spacing */
+  padding: var(--space-md);
+  
+  /* Overflow */
+  overflow: hidden;
+}
+
+/* Result Card Image */
+.result-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(45, 27, 14, 0.08);
+}
+
+/* Result Body (text content) */
+.result-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+/* Result Title */
+.result-body h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 1.75rem;                /* 28px */
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--text-dark);
+  
+  /* Gradient text */
+  background: linear-gradient(
+    135deg,
+    var(--orange-warm),
+    var(--red-berry)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  
+  margin-bottom: 0;
+}
+
+/* Result Meta */
+.result-body p {
+  font-size: 0.9375rem;              /* 15px */
+  color: var(--text-medium);
+  margin: 0;
+}
+
+/* Result Quote (fun message) */
+#resultQuote {
+  font-size: 0.875rem;               /* 14px */
+  font-style: italic;
+  color: var(--text-light);
+  padding: var(--space-sm);
+  background: rgba(255, 210, 63, 0.1);
+  border-left: 3px solid var(--yellow-butter);
+  border-radius: var(--radius-sm);
+  margin: var(--space-sm) 0;
+}
+
+/* Result Actions (buttons) */
+.result-actions {
+  display: flex;
+  gap: var(--space-sm);
+  margin-top: var(--space-sm);
+}
+
+.result-actions .btn {
+  flex: 1;
+  padding: 0.875rem 1.25rem;        /* Slightly smaller than main buttons */
+  font-size: 0.9375rem;              /* 15px */
+}
+
+/* === TABLET BREAKPOINT === */
+@media (min-width: 768px) {
+  .result {
+    max-width: 680px;
+    padding: 0 var(--space-md);
+  }
+  
+  .result-card {
+    flex-direction: row;             /* Side by side */
+    max-width: 680px;
+    gap: var(--space-lg);
+    padding: var(--space-lg);
+  }
+  
+  .result-card img {
+    width: 240px;
+    height: 240px;
+    flex-shrink: 0;
+  }
+  
+  .result-body h2 {
+    font-size: 2rem;                 /* 32px */
+  }
+  
+  .result-body p {
+    font-size: 1rem;                 /* 16px */
+  }
+}
+
+/* === DESKTOP BREAKPOINT === */
+@media (min-width: 1024px) {
+  .result {
+    max-width: 800px;
+  }
+  
+  .result-card {
+    max-width: 800px;
+    padding: var(--space-xl);
+  }
+  
+  .result-card img {
+    width: 280px;
+    height: 280px;
+  }
+  
+  .result-body h2 {
+    font-size: 2.25rem;              /* 36px */
+  }
+  
+  .result-actions .btn {
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+  }
+}
+
+
+/* Footer Container */
+.site-footer {
+  /* Layout */
+  width: 100%;
+  max-width: 100%;
+  text-align: center;
+  
+  /* Spacing */
+  margin-top: auto;                  /* Push to bottom */
+  padding: var(--space-lg) var(--space-sm) var(--space-md);
+  
+  /* Border */
+  border-top: 1px solid rgba(45, 27, 14, 0.06);
+}
+
+/* Footer Text */
+.site-footer p {
+  font-size: 0.875rem;               /* 14px */
+  color: var(--text-light);
+  margin: 0;
+  
+  /* Add subtle animation */
+  animation: fadeIn 1s ease-out 0.5s both;
+}
+
+/* Year Span (if you want to style it differently) */
+.site-footer #year {
+  font-weight: 600;
+  color: var(--text-medium);
+}
+
+/* Fade in animation for footer */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* === TABLET BREAKPOINT === */
+@media (min-width: 768px) {
+  .site-footer {
+    padding: var(--space-xl) var(--space-md) var(--space-lg);
+  }
+  
+  .site-footer p {
+    font-size: 0.9375rem;            /* 15px */
+  }
+}
+
+/* === DESKTOP BREAKPOINT === */
+@media (min-width: 1024px) {
+  .site-footer {
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .site-footer p {
+    font-size: 1rem;                 /* 16px */
+  }
+}
+
