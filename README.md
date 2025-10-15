@@ -2,7 +2,7 @@
 
 > A delightful, interactive web app that helps you decide what to have for breakfast! Spin the wheel and let fate (and your mood) choose your morning meal.
 
-![Breakfast Wheel Preview](assets/images/desktop%20view-breakfast%20wheel.png)
+![Breakfast Wheel Preview](assets/images/desktop-view-breakfast-wheel.png)
 
 ## ✨ Features
 
@@ -96,13 +96,13 @@ Found a bug or have a suggestion? Feel free to:
 ## 📸 Screenshots
 
 ### Desktop View
-![Desktop](assets/images/desktop%20view-breakfast%20wheel.png)
+![Desktop](assets/images/desktop-view-breakfast-wheel.png)
 
 ### Mobile View
-![Mobile](assets/images/mobile%20view-breakfast%20wheel.png)
+![Mobile](assets/images/mobile-view-breakfast-wheel.png)
 
 ### Spin Animation
-![Spin](assets/images/spin%20animation-breakfast%20wheel.png)
+![Spin](assets/images/spin-animation-breakfast-wheel.png)
 
 ## 📝 License
 
