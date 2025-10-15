@@ -96,13 +96,13 @@ Found a bug or have a suggestion? Feel free to:
 ## 📸 Screenshots
 
 ### Desktop View
-![Desktop](assets/images/desktop%20view-breakfast%20wheel.png)
+![Desktop](Assets/images/desktop%20view-breakfast%20wheel.png)
 
 ### Mobile View
-![Mobile](assets/images/mobile%20view-breakfast%20wheel.png)
+![Mobile](Assets/images/mobile%20view-breakfast%20wheel.png)
 
 ### Spin Animation
-![Spin](assets/images/spin%20animation-breakfast%20wheel.png)
+![Spin](Assets/images/spin%20animation-breakfast%20wheel.png)
 
 ## 📝 License
 
